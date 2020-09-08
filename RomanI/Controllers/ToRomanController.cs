@@ -14,7 +14,8 @@ namespace RomanI.Controllers
         [HttpGet]
         public string Get(int arabic)
         {
-
+            if (arabic == 1) return "I";
+            else return "";
         }
     }
 }

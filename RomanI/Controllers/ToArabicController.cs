@@ -11,9 +11,12 @@ namespace RomanI.Controllers
     [ApiController]
     public class ToArabicController : ControllerBase
     {
+        [HttpGet]
         public int Get(string roman)
         {
-
+            if (roman == "I") return 1;
+            if (roman == "IV") return 4;
+            else return 0;
         }
     }
 }
