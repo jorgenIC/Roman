@@ -48,6 +48,13 @@ namespace RomanI.Controllers
             string emptyString = roman.Trim(romanChar);
             if (emptyString.Length > 0)
                 throw new ArgumentOutOfRangeException("Roman Number should only contain upper case characters MDCLXVI.");
+            //Check that illigal subtraction combinations does not exist
+            string[] subStr = {"IM","VM", "XM", "LM", "DM", "ID", "VD", "XD", "LD", "DD", "IC", "VC", "LC", "IL", "VL" };
+            foreach (string value in subStr)
+            {
+                if (roman.Contains(value))
+                    throw new ArgumentOutOfRangeException("Illegal Roman Number" + value + ".");
+            }
         }
 
         private Dictionary<string, int> _romanToArabic;
