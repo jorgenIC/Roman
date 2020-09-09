@@ -67,15 +67,15 @@ namespace RomanI.Test
         }
 
         //String lenth > 15 (too many roman letters) or empty string
-        [TestCase("MMMDCCCLXXXVIIII", ExpectedResult = 0)]  //Error
-        [TestCase("", ExpectedResult = 0)]  //Error
+        [TestCase("MMMDCCCLXXXVIIII")]  //Error
+        [TestCase("")]  //Error
         //Invalid roman number
-        [TestCase("CDEFIX", ExpectedResult = 0)]  //Error
-        [TestCase("MMMIIIDCVILX", ExpectedResult = 0)]  //Error
-        [TestCase("XM", ExpectedResult = 0)]  //Error  990?
-        [TestCase("M+V", ExpectedResult = 0)]  //Error  1005?
-        [TestCase("-C", ExpectedResult = 0)]  //Error  -100?
-        [TestCase("M C I", ExpectedResult = 0)]  //Error  1101? or should it be valid
+        [TestCase("CDEFIX")]  //Error
+        [TestCase("MMMIIIDCVILX")]  //Error
+        [TestCase("XM")]  //Error  990?
+        [TestCase("M+V")]  //Error  1005?
+        [TestCase("-C")]  //Error  -100?
+        [TestCase("M C I")]  //Error  1101? or should it be valid
         public void Test_toArabicException(string roman)
         {
             Assert.Throws<ArgumentOutOfRangeException>(() => _toArabic.Get(roman));

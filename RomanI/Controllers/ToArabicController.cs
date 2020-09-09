@@ -15,6 +15,7 @@ namespace RomanI.Controllers
         public int Get(string roman)
         {
             InitDictionary();
+            CheckRomanContent(roman);
             int arabicNumber = 0;
 
             while (roman.Length != 0)
@@ -30,6 +31,14 @@ namespace RomanI.Controllers
             }
 
             return arabicNumber;
+        }
+
+        private void CheckRomanContent(string roman)
+        {
+            if (roman.Length > 15)
+                throw new ArgumentOutOfRangeException("Roman Number is too long. Max 15 characters.");
+            if (roman.Length == 0)
+                throw new ArgumentOutOfRangeException("Please type a Roman Number to Convert using letters: MDCLXVI = 1666");
         }
 
         private Dictionary<string, int> _romanToArabic;
