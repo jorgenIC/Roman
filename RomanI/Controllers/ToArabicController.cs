@@ -43,9 +43,11 @@ namespace RomanI.Controllers
                 throw new ArgumentOutOfRangeException("Please type a Roman Number to Convert using letters: MDCLXVI = 1666");
             if (roman.Contains("MMMM"))
                 throw new ArgumentOutOfRangeException("Max Roman Number is: MMMCMXCIX = 3999");
-            int i = string.Compare(roman, roman.ToUpper(), true);
-            if (i >= 0)
-                throw new ArgumentOutOfRangeException("Roman Number should only contain upper case characters.");
+            //check it only contains valid roman numbers
+            char[] romanChar = { 'M', 'D', 'C', 'L', 'X', 'V', 'I' };
+            string emptyString = roman.Trim(romanChar);
+            if (emptyString.Length > 0)
+                throw new ArgumentOutOfRangeException("Roman Number should only contain upper case characters MDCLXVI.");
         }
 
         private Dictionary<string, int> _romanToArabic;
