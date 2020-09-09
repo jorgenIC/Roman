@@ -66,8 +66,10 @@ namespace RomanI.Test
             return result;
         }
 
-        //String lenth > 15 (too many roman letters) or empty string
+        //String lenth > 15 (too many roman letters) lower case or empty string
         [TestCase("MMMDCCCLXXXVIIII")]  //Error
+        [TestCase("mdclxvi")]  //Error or shoud the app automatically convert to uppercase?
+        [TestCase("MMMM")]  //Error, this number is too big
         [TestCase("")]  //Error
         //Invalid roman number
         [TestCase("CDEFIX")]  //Error

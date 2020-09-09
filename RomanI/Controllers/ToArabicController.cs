@@ -17,8 +17,9 @@ namespace RomanI.Controllers
             InitDictionary();
             CheckRomanContent(roman);
             int arabicNumber = 0;
+            int cnt = 0;
 
-            while (roman.Length != 0)
+            while (roman.Length != 0 && cnt <= maxLength)
             {
                 foreach (string token in _romanToArabic.Keys)
                 {
@@ -28,6 +29,7 @@ namespace RomanI.Controllers
                         arabicNumber += _romanToArabic[token];
                     }
                 }
+                cnt++;
             }
 
             return arabicNumber;
@@ -35,13 +37,19 @@ namespace RomanI.Controllers
 
         private void CheckRomanContent(string roman)
         {
-            if (roman.Length > 15)
+            if (roman.Length > maxLength)
                 throw new ArgumentOutOfRangeException("Roman Number is too long. Max 15 characters.");
             if (roman.Length == 0)
                 throw new ArgumentOutOfRangeException("Please type a Roman Number to Convert using letters: MDCLXVI = 1666");
+            if (roman.Contains("MMMM"))
+                throw new ArgumentOutOfRangeException("Max Roman Number is: MMMCMXCIX = 3999");
+            int i = string.Compare(roman, roman.ToUpper(), true);
+            if (i >= 0)
+                throw new ArgumentOutOfRangeException("Roman Number should only contain upper case characters.");
         }
 
         private Dictionary<string, int> _romanToArabic;
+        private int maxLength = 15;
         private void InitDictionary()
         {
             _romanToArabic = new Dictionary<string, int>
