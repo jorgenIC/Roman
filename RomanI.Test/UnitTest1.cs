@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using RomanI.Controllers;
+using System;
 
 namespace RomanI.Test
 {
@@ -75,10 +76,9 @@ namespace RomanI.Test
         [TestCase("M+V", ExpectedResult = 0)]  //Error  1005?
         [TestCase("-C", ExpectedResult = 0)]  //Error  -100?
         [TestCase("M C I", ExpectedResult = 0)]  //Error  1101? or should it be valid
-        public int Test_toArabicException(string roman)
+        public void Test_toArabicException(string roman)
         {
-            int result = _toArabic.Get(roman);
-            return result;
+            Assert.Throws<ArgumentOutOfRangeException>(() => _toArabic.Get(roman));
         }
  
         //the minimumrequired possitive tests
@@ -132,12 +132,12 @@ namespace RomanI.Test
         [TestCase(-1)]
         public void Test_toRomanException(int arabic)
         {
-
+            Assert.Throws<ArgumentOutOfRangeException>(() => _toRoman.Get(arabic));
         }
 
         // Front end testing
         // 1. Evaluate string length <= 15 ?
-        // 2. Only roman numbers (letters MDCLXVI)
+        // 2. Only roman numbers (letters uppercase MDCLXVI)
         // 3. No special characters
         // 4. Integers only (for to Roman conversion)
     }
